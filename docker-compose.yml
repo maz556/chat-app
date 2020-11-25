@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+    server:
+        image: travel-app_server
+        build:
+            context: ./
+            dockerfile: server.Dockerfile
+        networks: 
+            - travel-app
+        env_file: .env
+
+    client:
+        image: travel-app_client
+        build:
+            context: ./
+            dockerfile: client.Dockerfile
+        ports:
+            - 8080:80
+        networks:
+            - travel-app
+
+networks:
+    travel-app:
+        name: travel-app
